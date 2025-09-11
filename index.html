@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Song Playlist Creator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <div class="row" style="gap:10px">
+            <h1>My Playlist Creator</h1>
+        </div>
+        <div class="row" style="gap:8px">
+            <button class="btn ghost small" id="exportJsonBtn">Export</button>
+            <label class="btn ghost small" for="importJson">Import<input type="file" id="importJson" accept="application/json" hidden></label>
+            <button class="btn ghost small" id="clearAllBtn" title="Clear saved data">Clear</button>
+            <span class="pill" id="status">Ready</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card" aria-labelledby="search-hd">
+            <div class="hd">
+                <h2 id="search-hd">Search Songs</h2>
+                <div class="small muted">Powered by iTunes Search API</div>
+            </div>
+            <div class="bd">
+                <div class="searchbar">
+                    <input id="q" placeholder="Try: Arijit Singh, Imagine Dragons..." />
+                    <select id="limit" class="btn" aria-label="Result limit">
+                        <option>10</option>
+                        <option selected>25</option>
+                        <option>50</option>
+                    </select>
+                    <button id="searchBtn" class="btn primary">Search</button>
+                </div>
+                <div id="resultsInfo" class="small muted">No results yet.</div>
+                <div id="results" class="results"></div>
+            </div>
+        </section>
+
+        <!-- Playlist Section -->
+        <section class="card" aria-labelledby="playlist-hd">
+            <div class="hd row spread">
+                <h2 id="playlist-hd">Your Playlist</h2>
+                <div class="row">
+                    <input id="plistName" class="btn" placeholder="Playlist name" />
+                    <button class="btn ok" id="saveBtn">Save</button>
+                </div>
+            </div>
+            <div class="bd">
+                <div class="row spread small">
+                    <span>Total: <b id="trackCount">0</b> tracks • <span id="totalTime">0:00</span></span>
+                    <audio id="player" controls preload="none"></audio>
+                </div>
+                <div id="playlist" class="playlist"></div>
+            </div>
+        </section>
+    </main>
+    <template id="trackTpl">
+        <div class="track" draggable="true">
+            <img alt="cover" />
+            <div class="meta">
+                <div class="title"></div>
+                <div class="artist"></div>
+            </div>
+            <div class="controls"></div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
